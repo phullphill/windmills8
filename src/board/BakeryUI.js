@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { COMPASS } from '../common';
-import { PathMarkers } from '../pathMarkers';
+import { PathMarkers } from '../path';
 
 export class BakeryUI extends Component {
 
