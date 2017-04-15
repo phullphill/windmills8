@@ -1,7 +1,8 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { COMPASS, QUARTER, CONTENT } from '../common';
-import { PathMarkers } from './PathMarkers';
+import { PathMarkers } from '../path';
 
 const isOpenTo = (vaneDirection, direction) => {
 	switch (direction) {

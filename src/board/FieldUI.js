@@ -1,7 +1,8 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { FIELD_CONTENT } from '../common';
-import { PathMarkers } from './PathMarkers';
+import { PathMarkers } from '../pathMarkers';
 
 export class FieldUI extends Component {
 

@@ -1,6 +1,7 @@
 
-import React, { Component, PropTypes } from 'react';
-import { PathMarkers } from './PathMarkers';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { PathMarkers } from '../path';
 
 export class MarketUI extends Component {
 

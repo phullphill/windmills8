@@ -1,0 +1,19 @@
+# Npm related
+node_modules
+npm-debug*
+.npm-cache
+
+# Mac junk
+.DS_Store
+
+# Build folders
+dist
+
+# Version files
+log-version.js
+
+# log files
+*.log
+
+# css files
+*.css

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { PropTypes } from 'prop-types';
 import { COMPASS } from '../common';
 
 export function StepMarker({ step, nextStep, squareSize, strokeWidth, colour }) {
@@ -18,7 +19,7 @@ export function StepMarker({ step, nextStep, squareSize, strokeWidth, colour }) 
 	let [x2, y2, cx2, cy2] = pathPoint(nextStep ? COMPASS.opposite(nextStep.inDirection) : null);
 
 	return (
-		<svg width={squareSize} height={squareSize} viewPort={`0 0 ${squareSize} ${squareSize}`}  style={{position: 'absolute', top: '0px'}} >
+		<svg width={squareSize} height={squareSize} style={{position: 'absolute', top: '0px'}} >
 			<path stroke="#F00" strokeWidth="5px" fillOpacity="0" d={`M${x1},${y1} C${cx1},${cy1} ${cx2},${cy2} ${x2},${y2}`} />
 		</svg>
 	)

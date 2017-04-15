@@ -1,5 +1,6 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { StepMarker } from './StepMarker';
 import { PathEndMarker } from './PathEndMarker';
 import { NextStepMarker } from './NextStepMarker';
@@ -13,7 +14,7 @@ export function PathMarkers(props) {
 	};
 
 	return (
-		<div styles={getPathWrapperStyles()}>
+		<div style={getPathWrapperStyles()}>
 			<PathEndMarker {...props} />
 			{player.path.allStepsThrough(position).map((step, i) =>
 				<StepMarker

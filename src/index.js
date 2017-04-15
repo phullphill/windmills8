@@ -10,8 +10,8 @@ import {
 	applyMiddleware
 } from 'redux';
 
-import { gameStore } from './state';
-import WindmillsApp from './containers/WindmillsAppA';
+import { gameStore } from './game';
+import { WindmillsApp } from './app';
 
 const logger = createLogger({
 	collapsed: true

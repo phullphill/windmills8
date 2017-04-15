@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { Position } from '../state';
 import { VaneUI } from "./VaneUI";
 import { FieldUI } from "./FieldUI";

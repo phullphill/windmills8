@@ -1,6 +1,9 @@
 
 import cloneDeep from 'lodash.clonedeep';
-import { MILLSPIN, FIELD_CONTENT } from '../common';
+import {
+	MILLSPIN,
+	FIELD_CONTENT,
+} from '../common';
 import { Board, Player, Step } from '../state';
 import {
 	ROTATE_VANE,
