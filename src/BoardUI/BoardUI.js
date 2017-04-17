@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { RowUI } from './RowUI';
-import { Position } from '../state';
+import { Position } from '../StateObject';
 
 export class BoardUI extends Component {
 
@@ -48,7 +48,7 @@ export class BoardUI extends Component {
 		}
 
 		return (
-			<div id='board' style={this.getBoardStyle(height, width, squareSize)}>
+			<div id='board' style={this.getBoardStyle(height, width, squareSize)} >
 				{rows}
 			</div>
 		);

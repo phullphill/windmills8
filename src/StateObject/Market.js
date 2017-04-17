@@ -1,5 +1,5 @@
-import { COMPASS, QUARTER } from '../common';
-import { Square } from './square';
+import { COMPASS, QUARTER } from '../Common';
+import { Square } from './Square';
 
 export class Market extends Square {
 
@@ -9,6 +9,10 @@ export class Market extends Square {
 
 	isInOperatingMill(mills) {
 		return false;
+	}
+
+	isMarket() {
+		return true;
 	}
 
 }

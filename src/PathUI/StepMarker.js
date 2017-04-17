@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { COMPASS } from '../common';
+import { COMPASS } from '../Common';
 
 export function StepMarker({ step, nextStep, squareSize, strokeWidth, colour }) {
 

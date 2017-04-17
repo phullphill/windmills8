@@ -1,5 +1,5 @@
-import { COMPASS } from '../common';
-import { Square } from './square';
+import { COMPASS } from '../Common';
+import { Square } from './Square';
 
 export class Bakery extends Square {
 
@@ -14,6 +14,10 @@ export class Bakery extends Square {
 
 	isInOperatingMill(mills) {
 		return false;
+	}
+
+	isBakery() {
+		return true;
 	}
 
 }

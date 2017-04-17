@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { COMPASS, QUARTER, CONTENT } from '../common';
-import { PathMarkers } from '../path';
+import { COMPASS, QUARTER, CONTENT } from '../Common';
+import { PathMarkers } from '../PathUI';
 
 const isOpenTo = (vaneDirection, direction) => {
 	switch (direction) {
@@ -80,12 +80,12 @@ export class VaneUI extends Component {
 
 	onStep(e) {
 		e.preventDefault();
-		this.props.actions.movePlayer(this.props.directionToNext);
+		this.props.gameActions.movePlayerRequest(this.props.directionToNext);
 	}
 
 	onRotate(e) {
 		e.preventDefault();
-		this.props.actions.rotateVane(this.props.vane.id, 1);
+		this.props.gameActions.rotateVaneRequest(this.props.vane.id, 1);
 	}
 
 	render() {

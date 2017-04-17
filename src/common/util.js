@@ -1,4 +1,4 @@
-import { QUARTER, MILLSPIN } from './enums';
+import { QUARTER, MILLSPIN } from './Enums';
 
 export function randomIntInclusive(min, max) {
 	min = Math.ceil(min);
@@ -11,7 +11,7 @@ export function determineMillSpin(squareIds, squares) {
 	const ne = squares[squareIds[QUARTER.NORTHEAST]];
 	const se = squares[squareIds[QUARTER.SOUTHEAST]];
 	const sw = squares[squareIds[QUARTER.SOUTHWEST]];
-	if ([nw, ne, se, sw].some(square => (square.constructor.name === 'Field' || square.constructor.name === 'Bakery'))) {
+	if ([nw, ne, se, sw].some(square => (square.isField() || square.isBakery()))) {
 		return MILLSPIN.NOSPIN;
 	} else if (nw.direction === QUARTER.NORTHEAST &&
 		ne.direction === QUARTER.SOUTHEAST &&

@@ -1,5 +1,5 @@
-import { COMPASS, QUARTER } from '../common';
-import { Square } from './square';
+import { COMPASS, QUARTER } from '../Common';
+import { Square } from './Square';
 
 export class Vane extends Square {
 
@@ -44,6 +44,10 @@ export class Vane extends Square {
 
 	nextDirectionsFrom() {
 		return COMPASS.symbols.filter(d => this.pointsTo(d));
+	}
+
+	isVane() {
+		return true;
 	}
 
 }

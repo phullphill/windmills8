@@ -3,15 +3,19 @@ import cloneDeep from 'lodash.clonedeep';
 import {
 	MILLSPIN,
 	FIELD_CONTENT,
-} from '../common';
-import { Board, Player, Step } from '../state';
+} from '../Common';
+import { Board, Player, Step } from '../StateObject';
+import { register } from '../Reduxify';
+import { modalActions, ModalAtMarket, ModalGameOver } from '../Modal';
 import {
 	ROTATE_VANE,
 	MOVE_PLAYER,
 	HARVEST_GRAIN,
 	GRIND_FLOUR,
 	BAKE_BREAD,
-} from './gameActions';
+	CHECK_NOTIFICATIONS,
+} from './GameActions';
+import { gameSelectors } from './GameSelectors';
 
 const initialStateOptions = {
 	id: 1,
@@ -19,6 +23,7 @@ const initialStateOptions = {
 	height: 16,
 	portWidth: 7,
 	portHeight: 11,
+	squareSize: 40,
 	boardProbabilities: {
 		bakery: 2,
 		field: 5,
@@ -46,6 +51,10 @@ const initialStateOptions = {
 			grain: 6,
 			flour: 12,
 			bread: 48,
+		},
+		bakeBread: {
+			grain: 2,
+			flour: 24,
 		}
 	},
 };
@@ -69,10 +78,27 @@ const initialState = (options) => {
 	const state = {
 		board,
 		player,
-
+		portWidth: options.portWidth,
+		portHeight: options.portHeight,
+		squareSize: options.squareSize,
 	};
 	return state;
 };
+
+function checkNotifications(state) {
+
+	// has player reached market?
+	const playerIsAtMarket = gameSelectors.player.isAtMarket(state);
+	const playerCanMove = gameSelectors.player.canMove(state);
+
+	if (playerIsAtMarket) {
+		modalActions.openModal(ModalAtMarket, {});
+	} else if (!playerCanMove) {
+		modalActions.openModal(ModalGameOver, {});
+	}
+
+	return state;
+}
 
 function movePlayer(state, toDirection) {
 	const newState = cloneDeep(state);
@@ -80,8 +106,7 @@ function movePlayer(state, toDirection) {
 	if (newState.player.payForStep(newState.board)) {
 		newState.player.takeStep(newState.board, toDirection);
 	}
-
-	return newState;
+	return checkNotifications(newState);
 }
 
 function rotateVane(state, currentVaneId, nTurns) {
@@ -90,8 +115,7 @@ function rotateVane(state, currentVaneId, nTurns) {
 	if (newState.player.payForRotateVane()) {
 		newState.board.rotateVane(currentVaneId, MILLSPIN.CLOCKWISE, nTurns);
 	}
-
-	return newState;
+	return checkNotifications(newState);
 }
 
 function harvestGrain(state, field) {
@@ -103,25 +127,30 @@ function harvestGrain(state, field) {
 		newState.player.harvestGrain();
 	}
 
-	return newState;
+	return checkNotifications(newState);
 }
 
 function grindFlour(state, mill) {
 	const newState = cloneDeep(state);
-	return newState;
+	return checkNotifications(newState);
 }
 
 function bakeBread(state, bakery) {
 	const newState = cloneDeep(state);
-	return newState;
+
+	if (newState.player.payForBakeBread()) {
+		newState.player.bakeBread();
+	}
+
+	return checkNotifications(newState);
 }
 
 function sellGoods(state) {
 	const newState = cloneDeep(state);
-	return newState;
+	return checkNotifications(newState);
 }
 
-export const gameStore = (state = initialState(initialStateOptions), action = {}) => {
+const gameStore = (state = initialState(initialStateOptions), action = {}) => {
 	const payload = action.payload;
 	switch (action.type) {
 
@@ -145,3 +174,5 @@ export const gameStore = (state = initialState(initialStateOptions), action = {}
 
 	}
 };
+
+register.reducer({ game: gameStore });

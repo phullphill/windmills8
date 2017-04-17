@@ -1,4 +1,4 @@
-import { MILLSPIN } from '../common';
+import { MILLSPIN } from '../Common';
 
 export class Mill {
 

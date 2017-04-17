@@ -1,5 +1,5 @@
 
-import { Enum, CircularEnum } from './enum';
+import { Enum, CircularEnum } from './Enum';
 
 export const COMPASS = new CircularEnum('NORTH', 'EAST', 'SOUTH', 'WEST');
 export const QUARTER = new CircularEnum('NORTHWEST', 'NORTHEAST', 'SOUTHEAST', 'SOUTHWEST');

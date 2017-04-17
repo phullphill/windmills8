@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import { COMPASS } from '../common';
-import { PathMarkers } from '../path';
+import { COMPASS } from '../Common';
+import { PathMarkers } from '../PathUI';
 
 export class BakeryUI extends Component {
 
@@ -55,12 +55,12 @@ export class BakeryUI extends Component {
 	onBake(e) {
 		e.preventDefault();
 		const { bakery } = this.props;
-		this.props.actions.bakeBread(bakery);
+		this.props.gameActions.bakeBreadRequest(bakery);
 	}
 
 	onStep(e) {
 		e.preventDefault();
-		this.props.actions.movePlayer(this.props.directionToNext);
+		this.props.gameActions.movePlayerRequest(this.props.directionToNext);
 	}
 
 	render() {

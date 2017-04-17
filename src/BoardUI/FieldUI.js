@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { FIELD_CONTENT } from '../common';
-import { PathMarkers } from '../pathMarkers';
+import { FIELD_CONTENT } from '../Common';
+import { PathMarkers } from '../PathUI';
 
 export class FieldUI extends Component {
 
@@ -48,13 +48,13 @@ export class FieldUI extends Component {
 
 	onStep(e) {
 		e.preventDefault();
-		this.props.actions.movePlayer(this.props.directionToNext);
+		this.props.gameActions.movePlayerRequest(this.props.directionToNext);
 	}
 
 	onHarvest(e) {
 		e.preventDefault();
 		const { player, field } = this.props;
-		this.props.actions.harvestGrain(field);
+		this.props.gameActions.harvestGrainRequest(field);
 	}
 
 	render() {

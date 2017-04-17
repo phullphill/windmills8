@@ -1,4 +1,4 @@
-import { QUARTER } from '../common';
+import { QUARTER } from '../Common';
 
 export class Square {
 
@@ -23,6 +23,22 @@ export class Square {
 	isInOperatingMill(mills) {
 		const millIds = QUARTER.symbols.map(q => this.millIds[q]);
 		return millIds.some(id => mills[id].isSpinning());
+	}
+
+	isBakery() {
+		return false;
+	}
+
+	isField() {
+		return false;
+	}
+
+	isMarket() {
+		return false;
+	}
+
+	isVane() {
+		return false;
 	}
 
 }

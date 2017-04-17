@@ -1,3 +1,4 @@
-export * from './gameActions';
-export * from './gameSelectors';
-export * from './gameStore';
+export * from './GameActions';
+export * from './GameSagas';
+export * from './GameSelectors';
+export * from './GameStore';

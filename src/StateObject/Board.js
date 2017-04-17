@@ -5,13 +5,13 @@ import {
 	FIELD_CONTENT,
 	randomIntInclusive,
 	determineMillSpin
-} from '../common';
-import { Market } from './market';
-import { Bakery } from './bakery';
-import { Field } from './field';
-import { Vane } from './vane';
-import { Mill } from './mill';
-import { Position } from './position';
+} from '../Common';
+import { Market } from './Market';
+import { Bakery } from './Bakery';
+import { Field } from './Field';
+import { Vane } from './Vane';
+import { Mill } from './Mill';
+import { Position } from './Position';
 
 export class Board {
 
@@ -144,19 +144,20 @@ export class Board {
 	}
 
 	allFields() {
-		return Object.values(this.squares).filter(s => s.constructor.name === 'Field');
+		return Object.values(this.squares).filter(s => s.isField());
 	}
 
 	playerNextSquares(player) {
 		const playerPosition = player.position;
 		const square = this.squareAt(playerPosition);
 		const nextDirections = square.nextDirectionsFrom();
-		return nextDirections.map(d => {
+		const nextSquares = nextDirections.map(d => {
 			const nextSquare = this.squareAt(this.nextPositionFrom(playerPosition, d));
-			if (nextSquare.constructor.name !== 'Bakery' || nextSquare.doorDirection === COMPASS.opposite(d)) {
+			if (!nextSquare.isBakery() || nextSquare.doorDirection === COMPASS.opposite(d)) {
 				return nextSquare;
 			}
 		});
+		return nextSquares;
 	}
 
 	directionBetween(fromPosition, toPosition) {

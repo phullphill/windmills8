@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Position } from '../state';
+import { Position } from '../StateObject';
 import { VaneUI } from "./VaneUI";
 import { FieldUI } from "./FieldUI";
 import { BakeryUI } from "./BakeryUI";
@@ -31,7 +31,7 @@ export class RowUI extends Component {
 			const isPossibleNextSquare = player.canMove && square.isOneOf(nextSquares);
 			const directionToNext = (isPossibleNextSquare ? board.directionBetween(playerPosition, squarePosition) : null);
 
-			if (square.constructor.name === 'Vane') {
+			if (square.isVane()) {
 				squares.push(
 					<VaneUI key={x}
 					        colIndex={colIndex}
@@ -42,7 +42,7 @@ export class RowUI extends Component {
 					        directionToNext={directionToNext}
 					/>
 				);
-			} else if (square.constructor.name === 'Field') {
+			} else if (square.isField()) {
 				squares.push(
 					<FieldUI key={x}
 					        colIndex={colIndex}
@@ -54,7 +54,7 @@ export class RowUI extends Component {
 					/>
 				);
 
-			} else if (square.constructor.name === 'Bakery') {
+			} else if (square.isBakery()) {
 				squares.push(
 					<BakeryUI key={x}
 					         colIndex={colIndex}
@@ -67,7 +67,7 @@ export class RowUI extends Component {
 				);
 
 
-			} else if (square.constructor.name === 'Market') {
+			} else if (square.isMarket()) {
 				squares.push(
 					<MarketUI key={x}
 							colIndex={colIndex}

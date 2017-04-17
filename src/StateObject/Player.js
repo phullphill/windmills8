@@ -1,5 +1,5 @@
-import { Path } from './path';
-import { Step } from './step';
+import { Path } from './Path';
+import { Step } from './Step';
 
 export class Player {
 
@@ -24,6 +24,10 @@ export class Player {
 		return ["grain", "flour", "bread"].some(c => this.scores[c] >= this.costs.step[c]);
 	}
 
+	pay(payFor, payWith) {
+		this.scores[payWith] -= this.costs[payFor][payWith];
+	}
+
 	payForStep(board) {
 		if (board.isInWorkingMill(this.position)) {
 			return true;
@@ -32,7 +36,7 @@ export class Player {
 		if (!payWith) {
 			return false;
 		}
-		this.scores[payWith] -= this.costs.step[payWith];
+		this.pay('step', payWith);
 		return true;
 	}
 
@@ -48,6 +52,7 @@ export class Player {
 			this.scores.grain -= this.factors.grindPerStep;
 			this.scores.flour += (this.factors.grindPerStep * this.factors.grain2flour);
 		}
+
 	}
 
 	get canRotateVane() {
@@ -59,7 +64,7 @@ export class Player {
 		if (!payWith) {
 			return false;
 		}
-		this.scores[payWith] -= this.costs.rotateVane[payWith];
+		this.pay('rotateVane', payWith);
 		return true;
 	}
 
@@ -69,6 +74,20 @@ export class Player {
 
 	harvestGrain() {
 		this.scores.grain += this.factors.field2grain;
+	}
+
+	payForBakebread() {
+		const payWith = ["grain", "flour"].find(c => this.scores[c] >= this.costs.bakeBread[c]);
+		if (!payWith) {
+			return false;
+		}
+		this.pay('bakeBread', payWith);
+		return true;
+	}
+
+	bakeBread() {
+		this.scores.bread += this.scores.flour * this.factors.flour2bread;
+		this.scores.flour = 0;
 	}
 
 }

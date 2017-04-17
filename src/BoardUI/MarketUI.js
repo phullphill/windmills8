@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { PathMarkers } from '../path';
+import { PathMarkers } from '../PathUI';
 
 export class MarketUI extends Component {
 
@@ -33,7 +33,7 @@ export class MarketUI extends Component {
 
 	onStep(e) {
 		e.preventDefault();
-		this.props.actions.movePlayer(this.props.directionToNext);
+		this.props.gameActions.movePlayerRequest(this.props.directionToNext);
 	}
 
 	render() {
