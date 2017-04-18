@@ -76,7 +76,7 @@ export class Player {
 		this.scores.grain += this.factors.field2grain;
 	}
 
-	payForBakebread() {
+	payForBakeBread() {
 		const payWith = ["grain", "flour"].find(c => this.scores[c] >= this.costs.bakeBread[c]);
 		if (!payWith) {
 			return false;

@@ -35,7 +35,7 @@ const initialStateOptions = {
 		coins: 0,
 	},
 	conversionFactors: {
-		field2grain: 50,
+		field2grain: 100,
 		grindPerStep: 6,
 		grain2flour: 2,
 		flour2bread: 4,
@@ -44,8 +44,8 @@ const initialStateOptions = {
 	actionCosts: {
 		step: {
 			grain: 1,
-			flour: 2,
-			bread: 8,
+			flour: 1,
+			bread: 1,
 		},
 		rotateVane: {
 			grain: 6,
